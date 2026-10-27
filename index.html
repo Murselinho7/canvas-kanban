@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101416" />
+    <title>Canvas Kanban</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <header class="top">
+      <div>
+        <p class="eyebrow">Local board</p>
+        <h1>Canvas Kanban</h1>
+      </div>
+      <div class="actions">
+        <button id="export" type="button">Export TODO.md</button>
+        <button id="import" type="button">Import Markdown</button>
+        <input id="file" type="file" accept=".md,.markdown,text/markdown,text/plain" hidden />
+      </div>
+    </header>
+    <main id="board" class="board" aria-label="Kanban board"></main>
+    <p id="status" class="status" role="status"></p>
+    <script src="app.js"></script>
+  </body>
+</html>

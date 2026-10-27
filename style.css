@@ -1,0 +1,207 @@
+:root {
+  color-scheme: dark;
+  --bg: #101416;
+  --ink: #e8eee9;
+  --muted: #9aa59c;
+  --line: rgba(232, 238, 233, 0.14);
+  --glass: rgba(22, 28, 27, 0.72);
+  --glass-strong: rgba(28, 36, 34, 0.88);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  --backlog: #8fb7a0;
+  --progress: #e0b15a;
+  --done: #8eb4d4;
+  --danger: #e07a66;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 420px at 12% -10%, rgba(143, 183, 160, 0.18), transparent 60%),
+    radial-gradient(700px 380px at 90% 0%, rgba(224, 177, 90, 0.12), transparent 55%);
+}
+
+.top, .board, .status { position: relative; }
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-end;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 36px 28px 8px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--backlog);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 40px;
+  letter-spacing: -0.04em;
+}
+
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+button, input[type="text"] {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+button:hover { background: rgba(255, 255, 255, 0.08); }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 28px 12px;
+}
+
+.column {
+  min-height: 420px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--glass);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.column.over { outline: 1px solid rgba(232, 238, 233, 0.4); }
+
+.column header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.column h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.column h2::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.count {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 180px;
+}
+
+.empty {
+  margin: 8px 2px 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.card {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--glass-strong);
+  cursor: grab;
+}
+
+.card.dragging { opacity: 0.45; }
+
+.card p {
+  flex: 1;
+  margin: 0;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.card input[type="text"] {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  padding: 0 0 4px;
+  outline: none;
+}
+
+.delete {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.delete:hover { color: var(--danger); }
+
+.composer { display: flex; gap: 8px; margin-top: 12px; }
+
+.composer input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 12px;
+}
+
+.composer button { border-radius: 12px; }
+
+.status {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 4px 28px 28px;
+  color: var(--muted);
+  font-size: 13px;
+  min-height: 1.2em;
+}
+
+@media (max-width: 860px) {
+  .top { display: block; }
+  .actions { margin-top: 16px; }
+  .board { grid-template-columns: 1fr; }
+  h1 { font-size: 32px; }
+}
